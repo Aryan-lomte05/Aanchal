@@ -1,0 +1,16 @@
+{
+  "name": "Aanchal — Continuous Care Companion",
+  "short_name": "Aanchal",
+  "description": "A Federated AI Companion for Continuous, Private Distress Monitoring and Care of Atrocity Victims",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090D16",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F43F5E'/><path d='M30 50 Q50 25 70 50 Q50 75 30 50' fill='white'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

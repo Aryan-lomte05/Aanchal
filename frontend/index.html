@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>आँचल · Aanchal — Sanctuary of Healing & Private Distress Monitoring</title>
+  <meta name="description" content="A Federated AI Companion for Continuous, Private Distress Monitoring and Care of Atrocity Victims (SIH26094 · MoSJE)">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#FBF9F5">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       APP HEADER & NAVIGATION
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-logo-orb">🌸</div>
+        <div class="brand-text">
+          <h1>आँचल · Aanchal</h1>
+          <span>Continuous Care Companion · Ministry of Social Justice</span>
+        </div>
+      </div>
+
+      <!-- Department Navigation Tabs -->
+      <nav class="nav-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="saathi-view">
+          <span>🌸</span> Aanchal Saathi
+        </button>
+        <button class="tab-btn" data-tab="district-view">
+          <span>🏛️</span> District Command
+        </button>
+        <button class="tab-btn" data-tab="national-view">
+          <span>🌐</span> National MoSJE
+        </button>
+        <button class="tab-btn" data-tab="gemini-view">
+          <span>⚡</span> Gemini Sandbox
+        </button>
+      </nav>
+
+      <!-- Zero PII Privacy Shield -->
+      <div class="header-status">
+        <div class="privacy-badge">
+          <span class="pulse-dot"></span>
+          <span>Zero PII Exposed</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       LIVE EMERGENCY ALERT BANNER (DEMO CENTERPIECE)
+       ========================================================================= -->
+  <div class="alert-banner-container" id="alertBannerContainer" style="display: none;">
+    <div class="alert-banner">
+      <div class="alert-icon-col">⚠️</div>
+      <div class="alert-content-col">
+        <div class="alert-header-row">
+          <span class="alert-tag-critical" id="bannerUrgency">CRITICAL ESCALATION</span>
+          <span class="alert-node-tag" id="bannerNodeInfo">Node: district_pune · sha256:7f3a...</span>
+          <span class="alert-node-tag" id="bannerTime">Just now</span>
+        </div>
+        <div class="alert-reason-text" id="bannerReason">
+          Distress score crossed critical safety threshold (84/100). Imminent threat markers detected.
+        </div>
+      </div>
+      <div class="alert-action-btns">
+        <button class="btn-officer-action primary" onclick="handleQuickOfficerAction('MARK_CONTACTED')">📞 Mark Contacted</button>
+        <button class="btn-officer-action" onclick="handleQuickOfficerAction('ESCALATE_POLICE')">🛡️ Escalate Protection</button>
+        <button class="btn-officer-action" onclick="handleQuickOfficerAction('ASSIGN_COUNSELLOR')">🧑‍⚕️ Assign Counsellor</button>
+        <button class="btn-officer-action" onclick="dismissAlertBanner()">✕ Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MAIN MULTI-DEPARTMENT VIEWPORTS
+       ========================================================================= -->
+  <main class="main-content">
+
+    <!-- =======================================================================
+         VIEW 1: AANCHAL SAATHI (VICTIM COMFORT COMPANION)
+         ======================================================================= -->
+    <section id="saathi-view" class="view-section active">
+      <div class="companion-grid">
+        
+        <!-- Left Column: Sacred Breathing Orb & Multi-Channel Check-in -->
+        <div class="companion-left">
+          
+          <!-- Sacred Geometry Petal Breathing Card -->
+          <div class="glass-card breathing-card">
+            <div class="breathing-orb-container">
+              <div class="petal-bloom-orb">
+                <div class="petal-inner-core"></div>
+              </div>
+            </div>
+            <div class="breathing-text" id="breathingStateText">धीमी सांस अंदर लें · Inhale Calm</div>
+            <p class="breathing-subtext">Take a gentle moment for yourself. You are in a safe, private space.</p>
+            
+            <!-- Web Audio API 432 Hz Binaural Harmony Toggle -->
+            <button id="btnAudioTherapy" class="audio-therapy-bar" onclick="toggleBinauralTherapy()">
+              <span id="audioTherapyIcon">🎵</span>
+              <span id="audioTherapyText">432 Hz Binaural Healing Tone (Play)</span>
+            </button>
+          </div>
+
+          <!-- Multi-Channel Interactive Check-in Card -->
+          <div class="glass-card">
+            <div class="checkin-header">
+              <h2>दैनिक कल्याण संवाद · Daily Support Check-in</h2>
+              <p>Speak or write in any language. Your words remain strictly on your local district node.</p>
+            </div>
+
+            <!-- Channel Selector -->
+            <div class="channel-selector">
+              <button class="channel-chip active" data-channel="web">💻 Web Voice / Text</button>
+              <button class="channel-chip" data-channel="whatsapp">💬 WhatsApp</button>
+              <button class="channel-chip" data-channel="voice">📞 Voice Call (Twilio)</button>
+            </div>
+
+            <!-- Input Area -->
+            <div class="checkin-textarea-wrapper">
+              <textarea 
+                id="checkinInput" 
+                class="checkin-textarea" 
+                placeholder="आप कैसा महसूस कर रहे हैं? यहां साझा करें... (Share how you are feeling in Hindi, English, or any regional language)"></textarea>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="checkin-controls">
+              <button id="btnVoiceInput" class="btn-mic" onclick="toggleVoiceRecording()">
+                <span id="micIcon">🎙️</span>
+                <span id="micStatusText">आवाज़ से बोलें (Voice Input)</span>
+              </button>
+
+              <button id="btnSubmitCheckin" class="btn-submit-checkin" onclick="submitCheckin()">
+                साझा करें · Share with Aanchal ✨
+              </button>
+            </div>
+
+            <!-- Live Victim Comforting Response Box -->
+            <div id="comfortReplyBox" class="comfort-reply-box">
+              <div class="comfort-reply-header">
+                <span class="comfort-reply-title">🌸 आँचल साथी का संदेश (Aanchal's Comforting Reply)</span>
+                <button class="btn-speak-reply" onclick="speakComfortReply()" title="Listen to message">🔊 सुनो</button>
+              </div>
+              <p id="comfortReplyText" class="comfort-reply-text"></p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Privacy Architecture & Statutory Relief -->
+        <div class="companion-right">
+          
+          <!-- Zero-Data-Exposed Privacy Card -->
+          <div class="glass-card" style="margin-bottom: 1.75rem; border-color: rgba(13, 148, 136, 0.35); background: #F0FDFA;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem;">
+              <span style="font-size: 1.6rem;">🛡️</span>
+              <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--teal-700);">
+                Privacy-by-Architecture
+              </h3>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-body); line-height: 1.6; margin-bottom: 0.85rem;">
+              Unlike traditional centralized cloud systems, your raw voice recordings, WhatsApp text, and trauma transcripts 
+              <strong>never leave this district node</strong>. Only an anonymized score number is shared upward.
+            </p>
+            <div style="background: #FFFFFF; padding: 0.85rem; border-radius: var(--radius-sm); font-size: 0.78rem; font-family: monospace; color: var(--teal-700); border: 1px solid var(--border-teal);">
+              Node Identifier: district_pune<br>
+              Anonymized ID: sha256:7f3a8b...<br>
+              Raw Transcripts Transmitted: 0 Bytes (Strict Isolation)
+            </div>
+          </div>
+
+          <!-- Grounded POA Act Statutory Schemes -->
+          <div class="glass-card" style="margin-bottom: 1.75rem;">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main);">
+              ⚖️ Statutory Relief Schemes (POA Act 1989)
+            </h3>
+            <ul style="list-style: none; font-size: 0.86rem; color: var(--text-body); display: flex; flex-direction: column; gap: 0.75rem;">
+              <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span>🛡️</span>
+                <span><strong>Section 15A:</strong> Immediate Police & Witness Protection Cell Deployment.</span>
+              </li>
+              <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span>⚖️</span>
+                <span><strong>Legal Assistance:</strong> Free Special Public Prosecutor & Court Travel Aid.</span>
+              </li>
+              <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span>🏡</span>
+                <span><strong>Rule 12 Relief:</strong> Emergency Safe Relocation & Immediate Financial Aid.</span>
+              </li>
+              <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span>🧑‍⚕️</span>
+                <span><strong>Tele-MANAS:</strong> 24/7 Free Psychological Trauma Counselling.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 24/7 Emergency Helplines -->
+          <div class="glass-card">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--text-main);">
+              🚨 24/7 Emergency Helplines
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.85rem;">Direct toll-free government hotlines</p>
+            <div class="emergency-grid">
+              <a href="tel:14416" class="sos-card">
+                <div class="sos-info">
+                  <h4>Tele-MANAS Mental Health</h4>
+                  <p>National Psychological Crisis Support</p>
+                </div>
+                <div class="sos-number">14416</div>
+              </a>
+              <a href="tel:14566" class="sos-card">
+                <div class="sos-info">
+                  <h4>National SC/ST Helpline</h4>
+                  <p>MoSJE Atrocity Prevention Support</p>
+                </div>
+                <div class="sos-number">14566</div>
+              </a>
+              <a href="tel:1091" class="sos-card">
+                <div class="sos-info">
+                  <h4>Women Crisis Helpline</h4>
+                  <p>Emergency Immediate Police Response</p>
+                </div>
+                <div class="sos-number">1091</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         VIEW 2: DISTRICT NODAL OFFICER PORTAL
+         ======================================================================= -->
+    <section id="district-view" class="view-section">
+      
+      <!-- District Header & Selector -->
+      <div class="table-header">
+        <div>
+          <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--text-main);">
+            🏛️ District Welfare Command Desk
+          </h2>
+          <p style="font-size: 0.92rem; color: var(--text-secondary);">
+            Longitudinal monitoring of local cases under SC/ST (Prevention of Atrocities) Act.
+          </p>
+        </div>
+        <div>
+          <select id="districtSelect" class="district-select" onchange="loadDistrictCohort()">
+            <option value="district_pune">District Pune (Current Active Node)</option>
+            <option value="district_nagpur">District Nagpur</option>
+            <option value="district_patna">District Patna</option>
+            <option value="district_varanasi">District Varanasi</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- District Key Metrics -->
+      <div class="district-stats-row">
+        <div class="stat-card">
+          <div class="label">Total Monitored Beneficiaries</div>
+          <div class="value" id="distStatTotal">7</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Average District Distress</div>
+          <div class="value" style="color: var(--amber-600);" id="distStatAvg">38.4</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Critical Threshold Breaches</div>
+          <div class="value" style="color: var(--rose-600);" id="distStatHigh">1</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Privacy Isolation Status</div>
+          <div class="value" style="font-size: 1.2rem; color: var(--teal-700); margin-top: 0.5rem;">
+            🔒 100% Local On-Prem
+          </div>
+        </div>
+      </div>
+
+      <!-- District Cases Table -->
+      <div class="glass-card table-card">
+        <table class="aanchal-table">
+          <thead>
+            <tr>
+              <th>Hashed Case ID</th>
+              <th>Distress Score</th>
+              <th>Trajectory</th>
+              <th>Contributing Factor Tags</th>
+              <th>Recommended Relief</th>
+              <th>Last Contact</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="districtTableBody">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Explainability Modal / Drawer -->
+      <div id="caseDetailModal" class="glass-card" style="display: none; margin-top: 1.75rem; border-color: var(--rose-400); background: #FFF1F2;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--rose-600);" id="modalCaseId">
+            🔍 Gemini Explainability Breakdown · sha256:7f3a...
+          </h3>
+          <button class="btn-officer-action" onclick="closeCaseModal()">✕ Close</button>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem;">
+          <div>
+            <h4 style="font-size: 0.8rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Plain Language Reasoning</h4>
+            <p id="modalExplanation" style="font-size: 0.96rem; line-height: 1.6; margin-top: 0.4rem; color: var(--text-main); font-weight: 500;"></p>
+          </div>
+          <div>
+            <h4 style="font-size: 0.8rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Statutory Grounding & Action Plan</h4>
+            <p id="modalIntervention" style="font-size: 1rem; margin-top: 0.4rem; font-weight: 800; color: var(--teal-700);"></p>
+            <div style="margin-top: 1.25rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <button class="btn-officer-action primary" onclick="handleQuickOfficerAction('MARK_CONTACTED')">📞 Mark Contacted</button>
+              <button class="btn-officer-action" onclick="handleQuickOfficerAction('ASSIGN_COUNSELLOR')">🧑‍⚕️ Assign Counsellor</button>
+              <button class="btn-officer-action" onclick="handleQuickOfficerAction('ESCALATE_POLICE')">🛡️ Request Police Guard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         VIEW 3: NATIONAL MOSJE MISSION CONTROL
+         ======================================================================= -->
+    <section id="national-view" class="view-section">
+      
+      <div style="margin-bottom: 1.75rem;">
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--text-main);">
+          🌐 National Atrocity Distress Aggregator
+        </h2>
+        <p style="font-size: 0.92rem; color: var(--text-secondary);">
+          Ministry of Social Justice and Empowerment (MoSJE) · Pan-India Privacy-Preserving Federation
+        </p>
+      </div>
+
+      <!-- National High-Level Metrics -->
+      <div class="district-stats-row">
+        <div class="stat-card">
+          <div class="label">Total Federating Districts</div>
+          <div class="value" id="natActiveNodes">4</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Pan-India Beneficiaries Monitored</div>
+          <div class="value" id="natTotalCases">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">High-Risk Cases Active</div>
+          <div class="value" style="color: var(--rose-600);" id="natHighRisk">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">National Distress Index</div>
+          <div class="value" style="color: var(--teal-700);" id="natAvgDistress">38.4 / 100</div>
+        </div>
+      </div>
+
+      <!-- Multi-District Node Grid -->
+      <div class="national-grid" id="nationalNodeGrid" style="margin-bottom: 2rem;">
+        <!-- Populated via JavaScript -->
+      </div>
+
+      <!-- Real-Time Privacy Boundary Packet Inspector -->
+      <div class="privacy-audit-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+          <span style="color: #2DD4BF; font-weight: 800;">
+            📡 REAL-TIME FEDERATED PRIVACY PACKET INSPECTOR (Live Telemetry Stream)
+          </span>
+          <span style="font-size: 0.78rem; color: #94A3B8;">
+            Zero Raw PII Transmitted Across the Wire
+          </span>
+        </div>
+        <div id="privacyAuditStream">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         VIEW 4: GEMINI ENGINE LIVE DEMO SANDBOX
+         ======================================================================= -->
+    <section id="gemini-view" class="view-section">
+      
+      <div style="margin-bottom: 1.75rem;">
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--text-main);">
+          ⚡ Gemini 2.5 Flash Engine & Live Hackathon Sandbox
+        </h2>
+        <p style="font-size: 0.92rem; color: var(--text-secondary);">
+          Execute the 5 distinct Gemini jobs live: Multilingual Speech-to-Text reasoning, Structured Scoring, Longitudinal History, Function Calling Escalation, and Grounded POA Recommendations.
+        </p>
+      </div>
+
+      <div class="sandbox-grid">
+        
+        <!-- Left: 1-Click Synthetic Test Suite -->
+        <div class="glass-card">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.4rem; color: var(--text-main);">
+            🧪 1-Click Synthetic Demo Scenarios (Multilingual)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.15rem;">
+            Click any scenario to inject it through the complete live Gemini pipeline:
+          </p>
+
+          <!-- Scenario 1 -->
+          <div class="script-card" onclick="injectDemoScript(1)">
+            <div class="script-header">
+              <h4>🟢 Script 1: Routine Follow-up (Stable)</h4>
+              <span class="tag-chip">WhatsApp · English</span>
+            </div>
+            <div class="script-snippet">"Hello, just checking in. I was able to collect the ration support provided by the welfare officer..."</div>
+          </div>
+
+          <!-- Scenario 2 -->
+          <div class="script-card" onclick="injectDemoScript(2)">
+            <div class="script-header">
+              <h4>🟡 Script 2: Procedural Court Anxiety</h4>
+              <span class="tag-chip">WhatsApp · Hindi</span>
+            </div>
+            <div class="script-snippet">"नमस्ते, अगली कोर्ट तारीख अगले मंगलवार को है। मुझे वकील साहब से मिलने में थोड़ी घबराहट हो रही है..."</div>
+          </div>
+
+          <!-- Scenario 3 -->
+          <div class="script-card" onclick="injectDemoScript(3)">
+            <div class="script-header">
+              <h4>🟠 Script 3: Social Ostracism & Economic Pressure</h4>
+              <span class="tag-chip">Voice · Hinglish</span>
+            </div>
+            <div class="script-snippet">"Bhaiya gaon wale hamare pariwar se baat nahi kar rahe hain. Dukan se ration lene jao toh mana kar dete hain..."</div>
+          </div>
+
+          <!-- Scenario 4 (CRITICAL ALERT MOMENT) -->
+          <div class="script-card" style="border-color: var(--rose-400); background: var(--rose-50);" onclick="injectDemoScript(4)">
+            <div class="script-header">
+              <h4 style="color: var(--rose-600);">🔴 Script 4: Imminent Threat & Intimidation (ALERT TRIGGER)</h4>
+              <span class="tag-chip" style="background: var(--rose-600); color: white;">Voice · Hindi STT</span>
+            </div>
+            <div class="script-snippet">"कल रात कुछ अनजान लोग मोटरसाइकिल पर हमारे घर के बाहर चक्कर लगा रहे थे और गालियां दे रहे थे... जान से मार देंगे..."</div>
+          </div>
+
+          <!-- Scenario 5 -->
+          <div class="script-card" style="border-color: var(--rose-400);" onclick="injectDemoScript(5)">
+            <div class="script-header">
+              <h4 style="color: var(--rose-600);">🔴 Script 5: Extreme Helplessness & Court Delay</h4>
+              <span class="tag-chip" style="background: var(--rose-600); color: white;">WhatsApp · English</span>
+            </div>
+            <div class="script-snippet">"I cannot take this anymore. The trial has been delayed for the third time, the accused are out on bail..."</div>
+          </div>
+
+        </div>
+
+        <!-- Right: Gemini Key Pool Visualizer & Raw JSON Output -->
+        <div>
+          
+          <!-- Key Pool Telemetry Card -->
+          <div class="glass-card" style="margin-bottom: 1.75rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-main);">
+                🔑 Gemini Key Pool & 429 Cooldown Resilience
+              </h3>
+              <span id="keyPoolModeTag" class="tag-chip" style="color: var(--teal-700); background: var(--teal-50); border: 1px solid var(--border-teal);">
+                LIVE_GEMINI_API
+              </span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">
+              Round-robin cycling across 15 keys with automatic 60s cooldown on HTTP 429 rate limits.
+            </p>
+
+            <div class="key-pool-visualizer" id="keyPoolGrid">
+              <!-- Key Slots Populated Dynamically -->
+            </div>
+          </div>
+
+          <!-- Live JSON Output Stream -->
+          <div class="glass-card" style="background: #0F172A; font-family: 'Courier New', monospace; border: 1px solid var(--teal-500);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.84rem; color: #2DD4BF; font-weight: bold;">
+                📄 Live Gemini DistressSchema Structured Output
+              </span>
+              <span id="engineSourceBadge" style="font-size: 0.74rem; color: #94A3B8;">
+                Awaiting Execution
+              </span>
+            </div>
+            <pre id="rawJsonResponse" style="max-height: 270px; overflow-y: auto; font-size: 0.82rem; color: #E2E8F0; line-height: 1.5;">
+{
+  "status": "idle",
+  "message": "Select any scenario on the left or type a check-in to inspect Gemini's structured output."
+}
+            </pre>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
