@@ -10,7 +10,7 @@
 
 **The problem in one line:** existing support systems for victims of atrocities under the SC/ST (Prevention of
 Atrocities) Act track legal and financial milestones, so a victim being intimidated into silence looks
-identical to a victim who is safe. Aanchal watches for psychological distress instead — and is built so that
+identical to a victim who is safe. Aanchal watches for psychological distress instead, and is built so that
 watching cannot itself become a way to expose the person being watched.
 
 **The central design constraint:** a national dashboard needs to see distress, but nobody above the district
@@ -22,7 +22,7 @@ validator in the aggregator, not by convention.
 
 ## 🌟 Overview
 
-Victims of atrocities under the SC/ST (Prevention of Atrocities) Act, 1989 face immense trauma and prolonged vulnerability after filing a complaint—ranging from social ostracism and intimidation to procedural delays. Existing systems only monitor legal and financial parameters, leaving psychological well-being unaddressed.
+Victims of atrocities under the SC/ST (Prevention of Atrocities) Act, 1989 face immense trauma and prolonged vulnerability after filing a complaint, ranging from social ostracism and intimidation to procedural delays. Existing systems only monitor legal and financial parameters, leaving psychological well-being unaddressed.
 
 **Aanchal** is a multi-channel, privacy-preserving distress monitoring and support companion. By deploying **Gemini 2.5 Flash** at localized **District Nodes**, Aanchal conducts continuous multilingual check-ins (WhatsApp, Voice Calls, Web) while ensuring **raw victim data and transcripts never leave the district node**. Only anonymized distress metrics and risk signals are federated to state and national dashboards, triggering immediate real-world interventions when critical thresholds are breached.
 
