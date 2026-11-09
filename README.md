@@ -3,6 +3,21 @@
 > **A Federated AI Companion for Continuous, Private Distress Monitoring and Care of Atrocity Victims**
 > Built for KJSSE CSI Gemini Hackday 2.0 (Problem Statement: SIH26094, Ministry of Social Justice and Empowerment)
 
+[![Status](https://img.shields.io/badge/status-hackathon%20prototype-8B7CF6?style=flat-square)](#status-and-honest-limits)
+[![Privacy](https://img.shields.io/badge/raw%20transcripts-never%20leave%20the%20district-4BC8C0?style=flat-square)](#architecture--privacy-boundary)
+[![Channels](https://img.shields.io/badge/channels-WhatsApp%20·%20Voice%20·%20PWA-15181D?style=flat-square)](#the-5-gemini-engine-capabilities-in-one-pipeline)
+[![License](https://img.shields.io/badge/license-MIT-15181D?style=flat-square)](LICENSE)
+
+**The problem in one line:** existing support systems for victims of atrocities under the SC/ST (Prevention of
+Atrocities) Act track legal and financial milestones, so a victim being intimidated into silence looks
+identical to a victim who is safe. Aanchal watches for psychological distress instead — and is built so that
+watching cannot itself become a way to expose the person being watched.
+
+**The central design constraint:** a national dashboard needs to see distress, but nobody above the district
+should ever be able to see *a person*. So raw transcripts and identities are confined to a district node, and
+only `{node_id, hashed_case_id, score_data}` crosses the boundary upward. The privacy boundary is enforced by a
+validator in the aggregator, not by convention.
+
 ---
 
 ## 🌟 Overview
@@ -97,6 +112,29 @@ For in-depth details, refer to the documents in [`docs/`](./docs/):
 - **API Contracts:** [docs/api-contracts.md](./docs/api-contracts.md)
 - **Frontend Specs:** [docs/frontend.md](./docs/frontend.md)
 - **Coding Standards:** [docs/coding-standards-and-rules.md](./docs/coding-standards-and-rules.md)
+
+---
+
+## Status and honest limits
+
+This was built as a **hackathon prototype** over a single build cycle, and it should be read as a working
+demonstration of the privacy architecture rather than a deployable system.
+
+- **Not deployed, not piloted.** It has never been used with a real victim, and it must not be without ethical
+  review, consent design and clinical supervision. Distress scoring on a vulnerable population is a serious
+  intervention, not a feature.
+- **The district node keeps case history in memory,** which is deliberate for the privacy demonstration but
+  means durability and node-level access control are unbuilt.
+- **Distress scores are model outputs, not clinical assessments.** They are routed to human officers for
+  judgement; no escalation is automated end-to-end without a person in the loop.
+- **Tested on synthetic multilingual check-in scripts** (`test_data/scripts.md`), not on real conversations.
+- **No formal privacy guarantee.** The architecture restricts what crosses the district boundary; it does not
+  provide differential privacy over the aggregated scores, so small-district re-identification risk is
+  unquantified.
+
+The part worth taking seriously is the boundary itself: the aggregator validates the shape of what it receives
+and rejects anything carrying raw text or identity, so a careless change upstream fails loudly instead of
+quietly leaking.
 
 ---
 
